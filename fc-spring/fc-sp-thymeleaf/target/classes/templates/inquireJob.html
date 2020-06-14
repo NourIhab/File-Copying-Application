@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+            }
+            th {
+                text-align: left;
+            }
+            table#t01 tr:nth-child(even) {
+                background-color: #eee;
+            }
+            table#t01 tr:nth-child(odd) {
+                background-color: #fff;
+            }
+            table#t01 th {
+                background-color: black;
+                color: white;
+            }
+            #myProgress {
+                background-color: #ddd;
+            }
+
+            #myBar {
+                height: 30px;
+                background-color: #4CAF50;
+                text-align: center;
+                line-height: 30px;
+                color: white;
+            }
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+            }
+            .button2:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            input[type=text], select, textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                resize: vertical;
+            }
+
+            label {
+                padding: 12px 12px 12px 0;
+                display: inline-block;
+            }
+
+            input[type=submit] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                float: right;
+            }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+            .container {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
+
+            .col-25 {
+                float: left;
+                width: 25%;
+                margin-top: 6px;
+            }
+
+            .col-75 {
+                float: left;
+                width: 75%;
+                margin-top: 6px;
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 600px) {
+                .col-25, .col-75, input[type=submit] {
+                    width: 100%;
+                    margin-top: 0;
+                }
+            }
+        </style>
+
+
+
+        <title>Inquire Job</title>
+        <script>
+            function timedRefresh(timeoutPeriod) {
+
+                setTimeout("location.reload(true);", timeoutPeriod);
+            }
+
+            window.onload = timedRefresh(10000);
+
+        </script>
+    </head>
+    <body>
+        <h1 align="center">Welcome to the Inquire Job page</h1>
+        <br><br>
+        <h3> Please Enter the Job Id</h3><br>
+        <div class="container">
+            <form action="inquireJob" method="post" >
+                <div class="row">
+                    <div class="col-25">
+                        <label for="JobId">Job ID </label> 
+                        <input  type="number" name="jobId" th:value="${jobId}"</input>
+                        <br><br>
+                        <input  class="button button2" type="submit" value="Inquire"></input>
+                    </div>
+                </div>
+            </form>
+            <br><br><br>
+
+
+            <div id="myProgress" th:if="${Inquire != null}">
+                <div id="myBar" th:style= "'width:'+ ${Inquire.copyPercentage}+ '%'" th:text="${Inquire.copyPercentage}"%></div>
+            </div>
+            <br><br><br>
+
+
+            <table id="t01" align="center" th:if="${Inquire != null}">
+                <h1 align="center"> Welcome to the Response Page</h1><br><br>
+                <caption>Job Fields</caption>
+                <tr>
+                    <th>Job Fields</th>
+                    <th>Job Values</th>          
+                </tr>
+                <tr>
+                    <td>Import Method</td>
+                    <td th:text="${Inquire.importMethod}"></td>
+                </tr>
+                <tr>
+                    <td>Job Status</td>
+                    <td th:text="${Inquire.status}"> </td>
+                </tr>
+                <tr>
+                    <td>Job Name</td>
+                    <td th:text="${Inquire.name}"></td>
+                </tr>
+                <tr>
+                    <td>Source File</td>
+                    <td th:text="${Inquire.srcFile}"> </td>
+                </tr>
+                <tr>
+                    <td>Destination File</td>
+                    <td th:text="${Inquire.destFile}"></td>
+                </tr>
+                <tr>
+                    <td>Max Speed</td>
+                    <td th:text= "${Inquire.maxSpeed}"> </td>
+                </tr>
+                <tr>
+                    <td>Current Coping Speed</td>
+                    <td th:text="${Inquire.currentSpeed}"></td>
+                </tr>
+
+                <tr>
+                    <td>Copying Percentage</td>
+                    <td th:text="${Inquire.copyPercentage}"></td>
+
+                </tr>
+
+                <tr>
+                    <td>Owner</td>
+                    <td th:text="${Inquire.owner}"></td>
+                </tr>
+                <tr>
+                    <td>File Size</td>
+                    <td th:text="${Inquire.fileSize}"></td>
+                </tr>
+                <tr>
+                    <td>Fail Reason</td>
+                    <td th:text="${Inquire.failReason}"></td>
+                </tr>
+                <tr>
+
+                    <td>Creation Date</td>
+                    <td th:text="${Inquire.creationDate}"></td>
+                </tr>
+            </table>
+        </h:if>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+com\asset\fc\sp\thymeleaf\FcSpThymeleaf.class
+com\asset\fc\sp\thymeleaf\controller\JobController.class
+com\asset\fc\sp\thymeleaf\manager\FCApplicationConfiguration.class
+com\asset\fc\sp\thymeleaf\manager\FcEventHandler.class
+com\asset\fc\sp\thymeleaf\property\PropertiesCach.class
+com\asset\fc\sp\thymeleaf\task\CopyingThread.class

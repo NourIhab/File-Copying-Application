@@ -1,0 +1,14 @@
+com\asset\fc\website\jsf\manager\WebApplicationManager.class
+com\asset\fc\website\jsf\manager\WebPropertiesManager.class
+com\asset\fc\website\jsf\db\dao\JobDao.class
+com\asset\fc\website\jsf\db\facade\JobFacade.class
+com\asset\fc\website\jsf\task\CopyingThread.class
+com\asset\fc\website\jsf\model\JobWrapper.class
+com\asset\fc\website\jsf\utility\FileUtility.class
+com\asset\fc\website\jsf\constant\Status.class
+com\asset\fc\website\jsf\db\services\JobService.class
+com\asset\fc\website\jsf\constant\ImportMethod.class
+com\asset\fc\website\jsf\utility\MyThreadFactory.class
+com\asset\fc\website\jsf\model\Job.class
+com\asset\fc\website\jsf\manager\DataBaseManager.class
+com\asset\fc\website\jsf\manager\JobManager.class

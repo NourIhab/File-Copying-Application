@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Process Offline</title>
+    </h:head>
+    <h:body>
+        <h2>Process Offline Job</h2>
+        <h:form id="porcessOfflineJob">
+            <h:panelGrid columns="4">
+                <h:outputLabel for="sourceFile">Source File</h:outputLabel>  
+                <h:inputText id="sourceFile" value="#{jobManager.job.jobobj.sourceFile}" required="true" requiredMessage="Source File is required"> </h:inputText>
+
+                <h:outputLabel for="destniationFile">Destination File</h:outputLabel>  
+                <h:inputText id="destniationFile" value="#{jobManager.job.jobobj.destniationFile}" required="true" requiredMessage="Source File is required"> </h:inputText>
+
+                <h:outputLabel for="maxSpeed">Max Speed</h:outputLabel>  
+                <h:inputText id="maxSpeed" value="#{jobManager.job.jobobj.maxSpeed}" required="true" requiredMessage="Source File is required"> </h:inputText>
+
+                <h:outputLabel for="jobName">Job Name</h:outputLabel>  
+                <h:inputText id="jobName" value="#{jobManager.job.jobName}" required="true" requiredMessage="Source File is required"> </h:inputText>
+                <br></br><br></br>
+                <h:commandButton id="submit-button" value="Process" action="#{jobManager.processOfflineJob}"></h:commandButton> 
+
+            </h:panelGrid>
+        </h:form>
+
+
+        <h:form id="inquire">
+            <h:outputLabel for="jobId">Job Id:</h:outputLabel> 
+            <h:outputText id="jobId" value="       #{jobManager.job.jobId}"></h:outputText>
+            <br></br><br></br>
+            <h:commandButton id="submit-button" value="Inquire" action="#{jobManager.inquireJob}"></h:commandButton> 
+        </h:form>
+
+        <br></br>
+        <h:form id="resultTable" rendered="#{jobManager.job.jobId ne null}">
+            <p:poll interval="3"   
+                    update="resultTable"
+                    listener="#{jobManager.inquireJob}"/>
+            <h:dataTable value="#{jobManager.job}" var="job" border="2">
+                <h:column>
+                    <f:facet name="header">Job Name</f:facet>
+                        #{job.jobName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Job ID</f:facet>
+                        #{job.jobId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Source File</f:facet>
+                        #{job.jobobj.sourceFile}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Destination File}</f:facet>
+                        #{job.jobobj.destniationFile}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Max Speed</f:facet>
+                        #{job.jobobj.maxSpeed}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Current Speed</f:facet>
+                        #{job.currentSpeed}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Copy Percentage</f:facet>
+                        #{job.copyPercentage}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Owner</f:facet>
+                        #{job.owner}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">File Size</f:facet>
+                        #{job.fileSize}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Creation Date</f:facet>
+                        #{job.date}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Fail Reason</f:facet>
+                        #{job.failReson}
+                </h:column>
+            </h:dataTable>
+            <br></br>
+            <p:progressBar widgetVar="pbAjax" ajax="true" value="#{jobManager.job.copyPercentage}"   
+                           labelTemplate="{value}%" styleClass="animated" style="height: 20px; line-height: 20px ;width: #{jobManager.job.copyPercentage}%; background-color: #4CAF50;
+                           text-align: center;color: white;" global="false">  
+            </p:progressBar>  
+        </h:form>
+
+    </h:body>
+</html>

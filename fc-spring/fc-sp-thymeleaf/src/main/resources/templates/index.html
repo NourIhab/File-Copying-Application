@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+            }
+
+            li {
+                float: left;
+            }
+
+            li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            li a:hover:not(.active) {
+                background-color: #111;
+            }
+
+            .active {
+                background-color: #4CAF50;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 align="center"> Welcome to the Folder Copying Thyleme Application</h1>
+        <br><br>
+        <ul>
+            <li><a class="active"  th:href="inquireJob"> Inquire Job </a></li>
+            <li> <a th:href="processOnlineJob"> Process Online Job </a></li>
+            <li><a th:href="processOfflineJob"> Process Offline Job </a></li>
+
+        </ul>
+
+    </body>
+</html>

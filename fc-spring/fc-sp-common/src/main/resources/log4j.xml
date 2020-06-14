@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<Configuration status="warn">
+    <Properties>
+        <Property name="basePath">target/logs</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="exceptionFileAppender" fileName="${basePath}/Exception.log" filePattern="${basePath}/Exception_%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%C{1}.%M] %X - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="businessFileAppender" fileName="${basePath}/Business.log" filePattern="${basePath}/Business_%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%C{1}.%M] %X - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="springframeworkFileAppender" fileName="${basePath}/Spring.log" filePattern="${basePath}/Spring_%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%C{1}.%M] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+        
+        <RollingFile name="hikariFileAppender" fileName="${basePath}/Hikari.log" filePattern="${basePath}/Hikari_%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%C{1}.%M] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%C{1}.%M] %X - %msg%n" />
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="exceptionLogger" level="info" additivity="false">
+            <AppenderRef  ref="exceptionFileAppender" level="info" />
+            <AppenderRef  ref="console" level="info" />
+        </Logger>
+        <Logger name="businessLogger" level="info" additivity="false">
+            <AppenderRef  ref="businessFileAppender" level="info" />
+            <AppenderRef  ref="console" level="info" />
+        </Logger>
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef  ref="springframeworkFileAppender" level="info" />
+            <AppenderRef  ref="console" level="info" />
+        </Logger>
+        <Logger name="com.zaxxer.hikari" level="info" additivity="false">
+            <AppenderRef  ref="hikariFileAppender" level="info" />
+            <AppenderRef  ref="console" level="info" />
+        </Logger>
+        <Root level="info" additivity="false">
+            <AppenderRef  ref="console" level="info" />
+        </Root>
+    </Loggers>
+</Configuration>

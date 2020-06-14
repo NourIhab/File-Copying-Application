@@ -1,0 +1,6 @@
+com\asset\fc\sp\rest\manager\FCApplicationConfiguration.class
+com\asset\fc\sp\rest\property\PropertiesCach.class
+com\asset\fc\sp\rest\controller\JobController.class
+com\asset\fc\sp\rest\FcSpRest.class
+com\asset\fc\sp\rest\manager\FcEventHandler.class
+com\asset\fc\sp\rest\task\CopyingThread.class
